@@ -7,7 +7,7 @@ import jolkert.plabattlesim.data.stats.Stats
 import kotlin.math.roundToInt
 import kotlin.math.sqrt
 
-class Pokemon(val species: PokemonSpecies)
+open class Pokemon(val species: PokemonSpecies)
 {
 	var nickname: String = ""
 		get()

@@ -1,23 +1,18 @@
 package jolkert.plabattlesim.data.stats
 
-class Stats(hp: Int, atk: Int, def: Int, spatk: Int, spdef: Int, spe: Int)
+data class Stats(val hp: Int, val attack: Int, val defense: Int, val specialAttack: Int, val specialDefense: Int, val speed: Int)
 {
-	private val statArray: IntArray
-
-	init
-	{
-		statArray = intArrayOf(hp, atk, def, spatk, spdef, spe)
-	}
-
 	constructor() : this(0, 0, 0, 0, 0, 0)
 
-	operator fun get(stat: Stat): Int = statArray[stat.ordinal]
-	operator fun set(stat: Stat, value: Int)
+	operator fun get(stat: Stat): Int = when (stat)
 	{
-		statArray[stat.ordinal] = value
+		Stat.Hp -> hp
+		Stat.Attack -> attack
+		Stat.Defense -> defense
+		Stat.SpecialAttack -> specialAttack
+		Stat.SpecialDefense -> specialDefense
+		Stat.Speed -> speed
 	}
-
-	fun asArray(): IntArray = statArray
 
 	companion object
 	{

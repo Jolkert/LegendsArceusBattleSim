@@ -3,8 +3,7 @@ package jolkert.plabattlesim.data.moves
 class Moveset(val capacity: Int = 4, vararg moves: Move) : Iterable<Move>
 {
 	private val moveset: Array<Move?> = arrayOfNulls(capacity)
-	var count: Int = 0
-		private set
+	var count: Int = 0; private set
 
 	init
 	{
@@ -33,6 +32,7 @@ class Moveset(val capacity: Int = 4, vararg moves: Move) : Iterable<Move>
 		for (i in moveset.indices)
 			moveset[i] = null
 	}
+	fun contains(move: Move): Boolean = moveset.contains(move)
 
 	operator fun get(index: Int): Move
 	{
@@ -42,12 +42,23 @@ class Moveset(val capacity: Int = 4, vararg moves: Move) : Iterable<Move>
 		return moveset[index] as Move
 	}
 
+	override fun equals(other: Any?): Boolean
+	{
+		if (other !is Moveset)
+			return false
+
+		for (move in other as Moveset)
+			if (!contains(move))
+				return false
+
+		return true
+	}
+
 	override fun iterator(): Iterator<Move>
 	{
 		return MovesetIterator(this)
 	}
-
-	class MovesetIterator(val moveset: Moveset) : Iterator<Move>
+	class MovesetIterator(private val moveset: Moveset) : Iterator<Move>
 	{
 		private var index: Int = 0
 

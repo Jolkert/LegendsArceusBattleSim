@@ -2,7 +2,7 @@ package jolkert.plabattlesim.data.moves
 
 import jolkert.plabattlesim.data.Type
 
-class Move(val name: String,
+data class Move(val name: String,
 		   val type: Type,
 		   val category: Category,
 		   val power: StyleTriad<Int>,
