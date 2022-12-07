@@ -7,29 +7,69 @@ import jolkert.plabattlesim.data.moves.Move
 import jolkert.plabattlesim.data.moves.Style
 import jolkert.plabattlesim.data.stats.Stat
 import jolkert.plabattlesim.data.stats.Stats
+import jolkert.plabattlesim.data.status.Effect
+import jolkert.plabattlesim.data.status.StatusData
+import jolkert.plabattlesim.data.status.StatusCondition
 import kotlin.random.Random
 import kotlin.random.nextInt
 
 class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 {
 	var currentHp: Int = stats[Stat.Hp]; private set
-	var actionTime: Int = getBaseActionTime(); private set
+	var actionTime: Int = getBaseActionTime()
 	val effectiveStats: Stats
 		get() = stats // TODO: add modifiers later
 
+	var primaryStatus: StatusCondition = StatusCondition.None
+	val secondaryStatuses: MutableList<StatusCondition> = emptyList<StatusCondition>() as MutableList<StatusCondition>
+
 	fun useMove(index: Int, target: BattlePokemon, style: Style)
 	{
-		val move = moveset[index]
+		val stunChance = getStunChance()
+		if (100 - stunChance < Random.Default.nextInt(100))
+			return
 
+		val move = moveset[index]
 		if (move.category.isDamaging())
 		{
 			val damage = calculateDamage(this, target, move, style)
 			target.takeDamage(damage)
 		}
 	}
+	private fun getStunChance(): Int
+	{
+		for (effect in primaryStatus.data.effects)
+			if (effect is Effect.TurnCancel)
+				return effect.chance
+
+		for (status in secondaryStatuses)
+			for (effect in status.data.effects)
+				if (effect is Effect.TurnCancel)
+					return effect.chance
+
+		return 0
+	}
+
 	fun takeDamage(damage: Int)
 	{
 		currentHp = (currentHp - damage).coerceAtLeast(0)
+	}
+	fun acquireStatus(status: StatusData, turnCount: Int)
+	{
+		val condition = StatusCondition(status, turnCount)
+		if (status.isPrimary)
+			primaryStatus = condition
+		else
+			secondaryStatuses.add(condition)
+	}
+	fun tickStatuses()
+	{
+		if (primaryStatus.data != StatusData.Healthy && primaryStatus.tickDown() < 1)
+			primaryStatus = StatusCondition.None
+
+		for (condition in secondaryStatuses)
+			if (condition.tickDown() < 1)
+				secondaryStatuses.remove(condition)
 	}
 
 	fun isType(type: Type): Boolean
@@ -60,8 +100,9 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 			val defenseStat = if (move.category == Category.Physical) Stat.Defense else Stat.SpecialDefense
 
 			// base
-			var damage: Int = ((attacker.effectiveStats[attackStat] + (15 * attacker.level) + 100) * move.power[style] /
-					(5f * (target.effectiveStats[defenseStat] + 50))
+			var damage: Int = (
+					move.power[style] * (attacker.effectiveStats[attackStat] + (15 * attacker.level) + 100) /
+					(5f * (target.effectiveStats[defenseStat] + 50)) 
 					).toInt()
 
 			// type effectiveness
