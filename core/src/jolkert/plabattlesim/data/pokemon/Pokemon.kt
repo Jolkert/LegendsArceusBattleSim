@@ -10,12 +10,7 @@ import kotlin.math.sqrt
 open class Pokemon(val species: PokemonSpecies)
 {
 	var nickname: String = ""
-		get()
-		{
-			return if (field == "")
-				species.name
-			else field
-		}
+		get() = if (field == "") species.name else field
 
 	var level: Int = 1
 	var nature: Nature = Nature(Stat.Speed, Stat.Speed)

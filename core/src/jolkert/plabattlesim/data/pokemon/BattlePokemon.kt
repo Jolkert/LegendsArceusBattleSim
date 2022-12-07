@@ -13,10 +13,9 @@ import kotlin.random.nextInt
 class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 {
 	var currentHp: Int = stats[Stat.Hp]; private set
-	var actionTime: Int = -1; private set // TODO: add this later lol
-	val effectiveStats: Stats get() = stats // TODO: add modifiers later
-
-	constructor(pokemon: Pokemon) : this(pokemon.species)
+	var actionTime: Int = getBaseActionTime(); private set
+	val effectiveStats: Stats
+		get() = stats // TODO: add modifiers later
 
 	fun useMove(index: Int, target: BattlePokemon, style: Style)
 	{
@@ -28,7 +27,6 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 			target.takeDamage(damage)
 		}
 	}
-
 	fun takeDamage(damage: Int)
 	{
 		currentHp = (currentHp - damage).coerceAtLeast(0)
@@ -38,6 +36,19 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 	{
 		val types = species.types
 		return types.first == type || types.second == type
+	}
+	fun getBaseActionTime(): Int = when (effectiveStats.speed)
+	{// TODO: make this not shit
+		in 0..5 -> 14
+		in 16..31 -> 13
+		in 32..55 -> 12
+		in 56..88 -> 11
+		in 89..129 -> 10
+		in 130..181 -> 9
+		in 182..242 -> 8
+		in 243..316 -> 7
+		in 317..401 -> 6
+		else -> 5
 	}
 
 	companion object

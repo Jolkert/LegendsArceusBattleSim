@@ -1,5 +1,5 @@
 package jolkert.plabattlesim.data
 
-class StatusCondition(val name: String, val isPrimary: Boolean)
+data class StatusCondition(val name: String, val isPrimary: Boolean)
 {
 }

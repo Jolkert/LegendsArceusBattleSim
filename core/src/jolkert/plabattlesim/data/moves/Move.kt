@@ -9,5 +9,3 @@ data class Move(val name: String,
 		   val accuracy: StyleTriad<Int>,
 		   val pp: Int,
 		   val selfTarget: Boolean = false)
-{
-}

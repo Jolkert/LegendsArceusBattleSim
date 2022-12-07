@@ -1,20 +1,11 @@
 package jolkert.plabattlesim.data.moves
 
+import jolkert.plabattlesim.data.Type
+
 class Moveset(val capacity: Int = 4, vararg moves: Move) : Iterable<Move>
 {
-	private val moveset: Array<Move?> = arrayOfNulls(capacity)
+	private val moves = Array<Move>(capacity) { i -> if (i in moves.indices) moves[i] else EmptyMove }
 	var count: Int = 0; private set
-
-	init
-	{
-		for (i in moves.indices)
-		{
-			if (i >= capacity)
-				break
-
-			moveset[i] = moves[i]
-		}
-	}
 
 	fun add(vararg moves: Move)
 	{
@@ -23,46 +14,48 @@ class Moveset(val capacity: Int = 4, vararg moves: Move) : Iterable<Move>
 			if (count >= capacity)
 				break
 
-			moveset[count++] = move
+			this.moves[count++] = move
 		}
 	}
 	fun clear()
 	{
 		count = 0
-		for (i in moveset.indices)
-			moveset[i] = null
+		for (i in moves.indices)
+			moves[i] = EmptyMove
 	}
-	fun contains(move: Move): Boolean = moveset.contains(move)
 
+	infix operator fun contains(move: Move): Boolean = moves.contains(move)
 	operator fun get(index: Int): Move
 	{
 		if (index >= count)
 			throw IndexOutOfBoundsException()
 
-		return moveset[index] as Move
+		return moves[index] as Move
 	}
 
-	override fun equals(other: Any?): Boolean
-	{
-		if (other !is Moveset)
-			return false
-
-		for (move in other as Moveset)
-			if (!contains(move))
-				return false
-
-		return true
-	}
-
+	// Iterable implementations
 	override fun iterator(): Iterator<Move>
 	{
-		return MovesetIterator(this)
+		return MovesetIterator()
 	}
-	class MovesetIterator(private val moveset: Moveset) : Iterator<Move>
+	inner class MovesetIterator : Iterator<Move>
 	{
 		private var index: Int = 0
 
-		override fun hasNext(): Boolean = index < moveset.count
-		override fun next(): Move = moveset[index++]
+		override fun hasNext(): Boolean = index < count
+		override fun next(): Move = get(index++)
+	}
+
+	companion object
+	{
+		@JvmStatic
+		private val EmptyMove = Move(
+			"empty",
+			Type.None,
+			Category.Status,
+			StyleTriad(0),
+			StyleTriad(0),
+			0
+		)
 	}
 }
