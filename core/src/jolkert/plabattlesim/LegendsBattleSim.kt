@@ -15,11 +15,6 @@ class LegendsBattleSim : ApplicationAdapter()
 	{
 		registerTypes()
 		registerSpecies()
-
-		for ((_, value) in Type.Registry)
-			println("$value")
-
-		println(PokemonSpecies.Registry["pikachu"])
 	}
 
 	private fun registerTypes()
