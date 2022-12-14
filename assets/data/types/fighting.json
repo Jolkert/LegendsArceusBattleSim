@@ -1,0 +1,5 @@
+{
+	"weaknesses": ["fairy", "flying", "psychic"],
+	"resistances": ["bug", "dark", "rock"],
+	"immunities": []
+}

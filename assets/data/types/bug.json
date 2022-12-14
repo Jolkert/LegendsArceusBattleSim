@@ -1,0 +1,5 @@
+{
+	"weaknesses": ["fire", "flying", "rock"],
+	"resistances": ["fighting", "grass", "ground"],
+	"immunities": []
+}

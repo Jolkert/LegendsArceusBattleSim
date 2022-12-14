@@ -5,9 +5,7 @@ import jolkert.plabattlesim.data.pokemon.BattlePokemon
 class Player
 {
 	val party: List<BattlePokemon> = ArrayList<BattlePokemon>(6)
-
-	lateinit var activePokemon: BattlePokemon
-		private set
+	var activePokemon: BattlePokemon = BattlePokemon.None; private set
 
 	fun switchTo(index: Int)
 	{

@@ -17,7 +17,21 @@ import kotlin.random.nextInt
 class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 {
 	var currentHp: Int = stats[Stat.Hp]; private set
-	var actionTime: Int = getBaseActionTime()
+	var actionTime: Int = baseActionTime
+	val baseActionTime: Int
+		get() = when (effectiveStats.speed)
+		{// TODO: make this not shit
+			in 0..5 -> 14
+			in 16..31 -> 13
+			in 32..55 -> 12
+			in 56..88 -> 11
+			in 89..129 -> 10
+			in 130..181 -> 9
+			in 182..242 -> 8
+			in 243..316 -> 7
+			in 317..401 -> 6
+			else -> 5
+		}
 	val effectiveStats: Stats
 		get()
 		{
@@ -46,20 +60,7 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 					yield(effect)
 		}
 
-	fun getBaseActionTime(): Int = when (effectiveStats.speed)
-	{// TODO: make this not shit
-		in 0..5 -> 14
-		in 16..31 -> 13
-		in 32..55 -> 12
-		in 56..88 -> 11
-		in 89..129 -> 10
-		in 130..181 -> 9
-		in 182..242 -> 8
-		in 243..316 -> 7
-		in 317..401 -> 6
-		else -> 5
-	}
-
+	@JvmName("getEffectsOfType")
 	inline fun <reified T> getEffects(): Sequence<T> = sequence()
 	{
 		for (effect in effects)
@@ -92,14 +93,8 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 	}
 	fun endTurn()
 	{
-		for (effect in effects)
-		{
-			if (effect is Effect.TurnEndDamageFraction)
-				takeDamage((1f / effect.fraction * stats.hp).toInt())
-			// TODO: add splinters effect -jolk 2022-12-08
-		}
-
 		tickStatuses()
+		actionTime = baseActionTime
 	}
 	fun takeDamage(damage: Int)
 	{
@@ -120,12 +115,23 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 	}
 	fun tickStatuses()
 	{
-		if (primaryStatus.data != StatusData.Healthy && primaryStatus.tickDown() < 1)
-			primaryStatus = StatusCondition.None
+		for (effect in effects)
+		{
+			if (effect is Effect.TurnEndDamageFraction)
+				takeDamage((1f / effect.fraction * stats.hp).toInt())
+			// TODO: add splinters effect -jolk 2022-12-08
+		}
 
-		for (condition in secondaryStatuses)
-			if (condition.tickDown() < 1)
-				secondaryStatuses.remove(condition)
+		for (status in statuses)
+		{
+			if (status.data != StatusData.Healthy && status.tickDown() < 1)
+			{
+				if (status.data.isPrimary)
+					primaryStatus = StatusCondition.None
+				else
+					secondaryStatuses.remove(status)
+			}
+		}
 	}
 
 	fun isType(type: Type): Boolean
@@ -137,11 +143,10 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 
 	companion object
 	{
-		@JvmStatic
-		fun calculateDamage(
-			attacker: BattlePokemon, target: BattlePokemon, move: Move, style: Style,
-			ignoreRandom: Boolean = false
-		): Int
+		@JvmStatic val None: BattlePokemon = BattlePokemon(PokemonSpecies.None)
+
+		@JvmStatic fun calculateDamage(attacker: BattlePokemon, target: BattlePokemon, move: Move, style: Style,
+									   ignoreRandom: Boolean = false): Int
 		{
 			val attackStat = if (move.category == Category.Physical) Stat.Attack else Stat.SpecialAttack
 			val defenseStat = if (move.category == Category.Physical) Stat.Defense else Stat.SpecialDefense

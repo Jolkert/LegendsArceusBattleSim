@@ -1,0 +1,5 @@
+{
+	"weaknesses": ["dragon", "fairy", "ice"],
+	"resistances": ["electric", "fire", "grass", "water"],
+	"immunities": []
+}

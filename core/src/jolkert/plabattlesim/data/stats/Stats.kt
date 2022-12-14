@@ -2,7 +2,8 @@ package jolkert.plabattlesim.data.stats
 
 data class Stats(var hp: Int, var attack: Int, var defense: Int, var specialAttack: Int, var specialDefense: Int, var speed: Int)
 {
-	constructor() : this(0, 0, 0, 0, 0, 0)
+	constructor(): this(0, 0, 0, 0, 0, 0)
+	constructor(all: Int): this (all, all, all, all, all, all)
 
 	operator fun get(stat: Stat): Int = when (stat)
 	{
@@ -21,6 +22,14 @@ data class Stats(var hp: Int, var attack: Int, var defense: Int, var specialAtta
 		Stat.SpecialAttack -> specialAttack = value
 		Stat.SpecialDefense -> specialDefense = value
 		Stat.Speed -> speed = value
+	}
+
+	override fun toString(): String = "$hp HP / $attack Atk / $defense Def / $specialAttack SpA / $specialDefense SpD / $speed Spe"
+	fun toString(ignoreEqualTo: Int): String
+	{
+		val array = intArrayOf(hp, attack, defense, specialAttack, specialDefense, speed)
+			.mapIndexed {it, index -> Pair(it, Stat.fromInt(index))}.dropWhile {it.first == ignoreEqualTo}
+		return array.joinToString(" / ") { "${it.first} ${it.second.toString(true)}" }
 	}
 
 	companion object

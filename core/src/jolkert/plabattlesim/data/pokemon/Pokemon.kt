@@ -11,6 +11,9 @@ open class Pokemon(val species: PokemonSpecies)
 {
 	var nickname: String = ""
 		get() = if (field == "") species.name else field
+	val hasNickname: Boolean
+		get() = nickname != species.name
+	var isShiny: Boolean = false
 
 	var level: Int = 1
 	var nature: Nature = Nature(Stat.Speed, Stat.Speed)
@@ -26,6 +29,20 @@ open class Pokemon(val species: PokemonSpecies)
 		}
 
 	var moveset: Moveset = Moveset(4)
+
+	constructor(species: PokemonSpecies,
+				nickname: String = "",
+				isShiny: Boolean = false,
+				level: Int = 1,
+				effortLevels: Stats = Stats(),
+				nature: Nature = Nature(Stat.Speed, Stat.Speed)): this(species)
+	{
+		this.nickname = nickname
+		this.isShiny = isShiny
+		this.level = level
+		this.effortLevels = effortLevels
+		this.nature = nature
+	}
 
 	fun resetNickname()
 	{

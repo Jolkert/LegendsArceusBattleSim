@@ -1,0 +1,5 @@
+{
+	"weaknesses": ["bug", "dark", "ghost"],
+	"resistances": ["fighting", "psychic"],
+	"immunities": []
+}

@@ -1,0 +1,5 @@
+{
+	"weaknesses": ["poison", "steel"],
+	"resistances": ["bug", "dark", "fighting"],
+	"immunities": ["dragon"]
+}
