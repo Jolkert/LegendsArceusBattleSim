@@ -24,7 +24,7 @@ object PokemonParser
 
 		val species = PokemonSpecies.Registry[speciesName]
 
-		var level = 100; var effortLevels = Stats(10); var nature = Nature(Stat.Speed, Stat.Speed); var isShiny = false
+		var level = 100; var effortLevels = Stats(10); var nature = Nature.Default; var isShiny = false
 		for (line in lines.drop(1))
 		{
 			if (line.startsWith("level: "))
@@ -42,6 +42,18 @@ object PokemonParser
 					throw IndexOutOfBoundsException()
 
 				effortLevels = parseStats(line.substring(valueStart), 10)
+			}
+			else if (line.startsWith("shiny: "))
+			{
+				val valueStart = line.firstIndexAfter("shiny: ")
+				if (valueStart >= line.length)
+					throw IndexOutOfBoundsException()
+
+				isShiny = line.substring(valueStart) == "yes"
+			}
+			else if (line.endsWith("nature"))
+			{
+				nature = Nature.Registry[line.substring(0..line.indexOf(' '))]
 			}
 		}
 

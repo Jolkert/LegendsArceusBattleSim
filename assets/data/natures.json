@@ -1,0 +1,204 @@
+{
+	"natures": [
+		{
+			"name": "hardy",
+			"value":
+			{
+				"boosted": "atk",
+				"lowered": "atk"
+			}
+		},
+		{
+			"name": "lonely",
+			"value":
+			{
+				"boosted": "atk",
+				"lowered": "def"
+			}
+		},
+		{
+			"name": "adamant",
+			"value":
+			{
+				"boosted": "atk",
+				"lowered": "spa"
+			}
+		},
+		{
+			"name": "naughty",
+			"value":
+			{
+				"boosted": "atk",
+				"lowered": "spd"
+			}
+		},
+		{
+			"name": "brave",
+			"value":
+			{
+				"boosted": "atk",
+				"lowered": "spe"
+			}
+		},
+		{
+			"name": "bold",
+			"value":
+			{
+				"boosted": "def",
+				"lowered": "atk"
+			}
+		},
+		{
+			"name": "docile",
+			"value":
+			{
+				"boosted": "def",
+				"lowered": "def"
+			}
+		},
+		{
+			"name": "impish",
+			"value":
+			{
+				"boosted": "def",
+				"lowered": "spa"
+			}
+		},
+		{
+			"name": "lax",
+			"value":
+			{
+				"boosted": "def",
+				"lowered": "spd"
+			}
+		},
+		{
+			"name": "relaxed",
+			"value":
+			{
+				"boosted": "def",
+				"lowered": "spe"
+			}
+		},
+		{
+			"name": "modest",
+			"value":
+			{
+				"boosted": "spa",
+				"lowered": "atk"
+			}
+		},
+		{
+			"name": "mild",
+			"value":
+			{
+				"boosted": "spa",
+				"lowered": "def"
+			}
+		},
+		{
+			"name": "bashful",
+			"value":
+			{
+				"boosted": "spa",
+				"lowered": "spa"
+			}
+		},
+		{
+			"name": "rash",
+			"value":
+			{
+				"boosted": "spa",
+				"lowered": "spd"
+			}
+		},
+		{
+			"name": "quiet",
+			"value":
+			{
+				"boosted": "spa",
+				"lowered": "spe"
+			}
+		},
+		{
+			"name": "calm",
+			"value":
+			{
+				"boosted": "spd",
+				"lowered": "atk"
+			}
+		},
+		{
+			"name": "gentle",
+			"value":
+			{
+				"boosted": "spd",
+				"lowered": "def"
+			}
+		},
+		{
+			"name": "careful",
+			"value":
+			{
+				"boosted": "spd",
+				"lowered": "spa"
+			}
+		},
+		{
+			"name": "quirky",
+			"value":
+			{
+				"boosted": "spd",
+				"lowered": "spd"
+			}
+		},
+		{
+			"name": "sassy",
+			"value":
+			{
+				"boosted": "spd",
+				"lowered": "spe"
+			}
+		},
+		{
+			"name": "timid",
+			"value":
+			{
+				"boosted": "spe",
+				"lowered": "atk"
+			}
+		},
+		{
+			"name": "hasty",
+			"value":
+			{
+				"boosted": "spe",
+				"lowered": "def"
+			}
+		},
+		{
+			"name": "jolly",
+			"value":
+			{
+				"boosted": "spe",
+				"lowered": "spa"
+			}
+		},
+		{
+			"name": "naive",
+			"value":
+			{
+				"boosted": "spe",
+				"lowered": "spd"
+			}
+		},
+		{
+			"name": "serious",
+			"value":
+			{
+				"boosted": "spe",
+				"lowered": "spe"
+			}
+		}
+	]
+}

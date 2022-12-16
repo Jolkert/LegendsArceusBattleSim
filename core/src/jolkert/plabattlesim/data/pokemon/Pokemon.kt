@@ -16,7 +16,7 @@ open class Pokemon(val species: PokemonSpecies)
 	var isShiny: Boolean = false
 
 	var level: Int = 1
-	var nature: Nature = Nature(Stat.Speed, Stat.Speed)
+	var nature: Nature = Nature.Default
 	var effortLevels: Stats = Stats()
 	val stats: Stats
 		get()
@@ -35,7 +35,7 @@ open class Pokemon(val species: PokemonSpecies)
 				isShiny: Boolean = false,
 				level: Int = 1,
 				effortLevels: Stats = Stats(),
-				nature: Nature = Nature(Stat.Speed, Stat.Speed)): this(species)
+				nature: Nature = Nature.Default): this(species)
 	{
 		this.nickname = nickname
 		this.isShiny = isShiny
