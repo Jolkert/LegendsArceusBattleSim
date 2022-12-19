@@ -1,0 +1,41 @@
+{
+	"type": "rock",
+	"category": "physical",
+	"pp": 5,
+	"power": {
+		"regular": 120,
+		"agile": 100,
+		"strong": 150
+	},
+	"accuracy": {
+		"regular": 80,
+		"agile": 80,
+		"strong": 90
+	},
+	"userActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 3,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "recoil",
+			"percentageOf": "damageDealt",
+			"percentage": {
+				"regular": 50,
+				"agile": 50,
+				"strong": 75
+			}
+		}
+	]
+}

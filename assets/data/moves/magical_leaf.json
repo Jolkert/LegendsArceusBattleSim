@@ -1,0 +1,31 @@
+{
+	"type": "grass",
+	"category": "special",
+	"pp": 20,
+	"power": {
+		"regular": 60,
+		"agile": 45,
+		"strong": 75
+	},
+	"accuracy": {
+		"regular": 101,
+		"agile": 101,
+		"strong": 101
+	},
+	"userActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 3,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": []
+}

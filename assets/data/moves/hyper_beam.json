@@ -1,0 +1,31 @@
+{
+	"type": "normal",
+	"category": "special",
+	"pp": 5,
+	"power": {
+		"regular": 120,
+		"agile": 100,
+		"strong": 150
+	},
+	"accuracy": {
+		"regular": 90,
+		"agile": 90,
+		"strong": 95
+	},
+	"userActionTime": {
+		"regular": 5,
+		"agile": 2,
+		"strong": 8
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 3,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": []
+}

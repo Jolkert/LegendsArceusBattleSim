@@ -1,0 +1,77 @@
+{
+	"type": "psychic",
+	"category": "status",
+	"pp": 10,
+	"power": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"accuracy": {
+		"regular": 101,
+		"agile": 101,
+		"strong": 101
+	},
+	"userActionTime": {
+		"regular": -2,
+		"agile": -3,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "applyStatus",
+			"to": "user",
+			"statuses": [
+				"power_boost"
+			],
+			"duration": {
+				"regular": 4,
+				"agile": 3,
+				"strong": 5
+			},
+			"chance": {
+				"regular": 100,
+				"agile": 100,
+				"strong": 100
+			}
+		},
+		{
+			"effectType": "applyStatus",
+			"to": "user",
+			"statuses": [
+				"guard_boost"
+			],
+			"duration": {
+				"regular": 4,
+				"agile": 3,
+				"strong": 5
+			},
+			"chance": {
+				"regular": 100,
+				"agile": 100,
+				"strong": 100
+			}
+		},
+		{
+			"effectType": "cureStatus",
+			"of": "user",
+			"statuses": [
+				"poison",
+				"burn",
+				"frostbite",
+				"paralysis",
+				"drowsy"
+			]
+		}
+	]
+}

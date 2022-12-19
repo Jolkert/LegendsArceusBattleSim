@@ -1,0 +1,49 @@
+{
+	"type": "normal",
+	"category": "status",
+	"pp": 20,
+	"power": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"accuracy": {
+		"regular": 101,
+		"agile": 101,
+		"strong": 101
+	},
+	"userActionTime": {
+		"regular": -3,
+		"agile": -4,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "applyStatus",
+			"to": "user",
+			"statuses": [
+				"power_boost"
+			],
+			"duration": {
+				"regular": 5,
+				"agile": 4,
+				"strong": 7
+			},
+			"chance": {
+				"regular": 100,
+				"agile": 100,
+				"strong": 100
+			}
+		}
+	]
+}

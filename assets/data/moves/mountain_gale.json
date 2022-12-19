@@ -1,0 +1,31 @@
+{
+	"type": "ice",
+	"category": "physical",
+	"pp": 5,
+	"power": {
+		"regular": 100,
+		"agile": 80,
+		"strong": 120
+	},
+	"accuracy": {
+		"regular": 85,
+		"agile": 85,
+		"strong": 95
+	},
+	"userActionTime": {
+		"regular": 5,
+		"agile": 2,
+		"strong": 8
+	},
+	"targetActionTime": {
+		"regular": 3,
+		"agile": 5,
+		"strong": 3
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": []
+}

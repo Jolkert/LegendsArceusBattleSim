@@ -1,0 +1,36 @@
+{
+	"type": "normal",
+	"category": "status",
+	"pp": 10,
+	"power": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"accuracy": {
+		"regular": 101,
+		"agile": 101,
+		"strong": 101
+	},
+	"userActionTime": {
+		"regular": -3,
+		"agile": -4,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "swapOffenseAndDefense",
+			"of": "user"
+		}
+	]
+}

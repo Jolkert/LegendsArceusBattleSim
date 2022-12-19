@@ -1,0 +1,56 @@
+{
+	"type": "electric",
+	"category": "physical",
+	"pp": 20,
+	"power": {
+		"regular": 65,
+		"agile": 50,
+		"strong": 80
+	},
+	"accuracy": {
+		"regular": 100,
+		"agile": 100,
+		"strong": 100
+	},
+	"userActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 3,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "applyStatus",
+			"to": "target",
+			"statuses": [
+				"paralysis"
+			],
+			"duration": {
+				"regular": 3,
+				"agile": 2,
+				"strong": 4
+			},
+			"chance": {
+				"regular": 30,
+				"agile": 30,
+				"strong": 50
+			}
+		},
+		{
+			"effectType": "cureStatus",
+			"of": "user",
+			"statuses": [
+				"drowsy"
+			]
+		}
+	]
+}

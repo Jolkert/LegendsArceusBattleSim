@@ -1,0 +1,49 @@
+{
+	"type": "steel",
+	"category": "physical",
+	"pp": 5,
+	"power": {
+		"regular": 100,
+		"agile": 80,
+		"strong": 120
+	},
+	"accuracy": {
+		"regular": 75,
+		"agile": 75,
+		"strong": 90
+	},
+	"userActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 3,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "applyStatus",
+			"to": "target",
+			"statuses": [
+				"guard_drop"
+			],
+			"duration": {
+				"regular": 3,
+				"agile": 2,
+				"strong": 4
+			},
+			"chance": {
+				"regular": 20,
+				"agile": 0,
+				"strong": 40
+			}
+		}
+	]
+}

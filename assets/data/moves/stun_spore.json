@@ -1,0 +1,49 @@
+{
+	"type": "grass",
+	"category": "status",
+	"pp": 20,
+	"power": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"accuracy": {
+		"regular": 80,
+		"agile": 80,
+		"strong": 100
+	},
+	"userActionTime": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 5
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 3,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "applyStatus",
+			"to": "target",
+			"statuses": [
+				"paralysis"
+			],
+			"duration": {
+				"regular": 5,
+				"agile": 3,
+				"strong": 7
+			},
+			"chance": {
+				"regular": 100,
+				"agile": 100,
+				"strong": 100
+			}
+		}
+	]
+}

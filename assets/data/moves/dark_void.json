@@ -1,0 +1,66 @@
+{
+	"type": "dark",
+	"category": "status",
+	"pp": 10,
+	"power": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"accuracy": {
+		"regular": 90,
+		"agile": 90,
+		"strong": 100
+	},
+	"userActionTime": {
+		"regular": 5,
+		"agile": 2,
+		"strong": 8
+	},
+	"targetActionTime": {
+		"regular": 0,
+		"agile": 3,
+		"strong": 0
+	},
+	"critStage": {
+		"regular": 0,
+		"agile": 0,
+		"strong": 0
+	},
+	"effects": [
+		{
+			"effectType": "applyStatus",
+			"to": "target",
+			"statuses": [
+				"drowsy"
+			],
+			"duration": {
+				"regular": 3,
+				"agile": 2,
+				"strong": 4
+			},
+			"chance": {
+				"regular": 100,
+				"agile": 100,
+				"strong": 100
+			}
+		},
+		{
+			"effectType": "applyStatus",
+			"to": "target",
+			"statuses": [
+				"guard_drop"
+			],
+			"duration": {
+				"regular": 3,
+				"agile": 2,
+				"strong": 4
+			},
+			"chance": {
+				"regular": 100,
+				"agile": 100,
+				"strong": 100
+			}
+		}
+	]
+}
