@@ -174,7 +174,7 @@ class BattlePokemon(species: PokemonSpecies) : Pokemon(species)
 
 			// attacker effects
 			for (effect in attacker.getEffects<Effect.DamageMultiplier>()
-				.takeWhile { it.position == Position.Attacker })
+				.takeWhile { it.position == Position.User })
 				if (effect.category == Category.None || effect.category == move.category)
 					damage = (damage * effect.multiplier).toInt()
 
