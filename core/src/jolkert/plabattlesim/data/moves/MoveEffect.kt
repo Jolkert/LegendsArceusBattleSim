@@ -1,10 +1,68 @@
 package jolkert.plabattlesim.data.moves
 
+import com.badlogic.gdx.utils.JsonReader
 import com.badlogic.gdx.utils.JsonValue
+import jolkert.plabattlesim.data.asStyleTriad
+import jolkert.plabattlesim.data.getOrNull
+import jolkert.plabattlesim.data.getStringTransform
 import jolkert.plabattlesim.data.pokemon.Position
 
 abstract class MoveEffect
 {
+	companion object
+	{
+		@JvmStatic fun fromJson(data: JsonValue): MoveEffect
+		{
+			val condition = data.getOrNull("condition") { Condition.fromJson(it) } ?: Condition.None
+			val effect: MoveEffect = when (data["effectType"].asString())
+			{
+				"heal" -> Heal(
+					percentageOf = HealRecoilPercentage.fromString(data.getString("percentageOf")),
+					percentage = data.getInt("percentage"),
+					condition = condition
+				)
+				"recoil" -> Recoil(
+					percentageOf = HealRecoilPercentage.fromString(data.getString("percentageOf")),
+					percentage = data.getInt("percentage"),
+					condition = condition
+				)
+				"applyStatus" -> ApplyStatus(
+					to = data.getStringTransform("to") { Position.fromString(it) },
+					duration = data["duration"].asStyleTriad(),
+					chance = data["chance"].asStyleTriad(),
+					statusOptions = data["statuses"].asStringArray(),
+					condition = condition
+				)
+				"cureStatus" -> CureStatus(
+					of = data.getStringTransform("of") { Position.fromString(it) },
+					statuses = data["statuses"].asStringArray(),
+					condition = condition
+				)
+				"multiplyPower" -> MultiplyPower(
+					multiplier = data.getInt("multiplier"),
+					condition = condition
+				)
+				"modifyMoveData" -> ModifyMoveData(
+					power = data.getOrNull("power") { it.asStyleTriad() },
+					accuracy = data.getOrNull("accuracy") { it.asStyleTriad() },
+					userActionTime = data.getOrNull("userActionTime") { it.asStyleTriad() },
+					targetActionTime = data.getOrNull("targetActionTime") { it.asStyleTriad() },
+					critStage = data.getOrNull("critStage") { it.asStyleTriad() }
+				)
+				"swapOffenseAndDefense" -> SwapOffenseAndDefense(
+					of = data.getStringTransform("of") { Position.fromString(it) },
+					condition = condition
+				)
+
+				else -> throw UnsupportedOperationException("Could not parse effectType ${data["effectType"].asString()}")
+			}
+
+			return effect
+		}
+
+		@JvmStatic fun fromJson(data: String) = fromJson(JsonReader().parse(data))
+	}
+
 	open val condition: Condition = Condition.None
 
 	// subclasses

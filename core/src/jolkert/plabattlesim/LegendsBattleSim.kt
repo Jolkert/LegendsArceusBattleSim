@@ -22,6 +22,7 @@ class LegendsBattleSim : ApplicationAdapter()
 		registerMoves()
 	}
 
+	// TODO: make this less repetitive
 	private fun registerNatures()
 	{
 		val file: FileHandle = Gdx.files.internal("assets/data/natures.json")
